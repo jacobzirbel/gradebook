@@ -11,7 +11,7 @@ namespace GradeBook
             Name = name;
         }
 
-        public void AddLetterGrade(char letter)
+        public void AddGrade(char letter)
         {
             switch(letter)
             {
@@ -31,8 +31,7 @@ namespace GradeBook
                     AddGrade(50);
                     break;
                 default: 
-                    AddGrade(0);
-                    break;
+                    throw new ArgumentException($"Invalid {nameof(letter)}");
             }
         }
         public void AddGrade(double grade)
@@ -86,7 +85,11 @@ namespace GradeBook
             return result; 
         }
         private List<double> grades;
-        public string Name;
+        public string Name
+        {
+            get;
+            private set;
+        }
     }
 }   
 

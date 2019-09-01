@@ -22,24 +22,47 @@ namespace GradeBook
                     continue;
                 }
 
+                // if(input == "A" || input == "B" || input == "C" || input == "D" || input == "F" || input == "a" || input == "b" || input == "c" || input == "d" || input == "f")
+                // {
+                //     input = input.ToUpper();
+                //     char grade = char.Parse(input);
+                //     book.AddGrade(grade);
+                //     continue;
+                // }
+                
                 try
                 {
-                var grade = double.Parse(input);
-                book.AddGrade(grade);
+                    input = input.ToUpper();
+                    char grade = char.Parse(input);
+                    book.AddGrade(grade);
+                    continue;
                 }
-                catch(ArgumentException ex)
+                catch(FormatException)
                 {
-                    Console.WriteLine(ex.Message);
-                }
-                catch(FormatException ex)
-                {
-                    Console.WriteLine(ex.Message);
+                   Console.WriteLine("format 1 exception");
                 }
                 finally
                 {
-                    //run this no matter what
-                    Console.WriteLine("***");
+                    try
+                    {
+                    var grade = double.Parse(input);
+                    book.AddGrade(grade);
+                    }
+                    catch(ArgumentException)
+                    {
+                        Console.WriteLine("argument exception");
+                    }
+                    catch(FormatException)
+                    {
+                        Console.WriteLine("format exception");
+                    }
+                    finally
+                    {
+                        Console.WriteLine("***");
+                    }
                 }
+                
+                
 
             }while(!done);
 
