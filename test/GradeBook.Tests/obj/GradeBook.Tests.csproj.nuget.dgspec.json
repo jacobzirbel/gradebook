@@ -84,8 +84,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\Owner\\gradebook\\src\\GradeBook\\GradeBook.csproj": {
-                "projectPath": "C:\\Users\\Owner\\gradebook\\src\\GradeBook\\GradeBook.csproj"
+              "C:\\Users\\Owner\\gradebook\\src\\GradeBook\\Gradebook.csproj": {
+                "projectPath": "C:\\Users\\Owner\\gradebook\\src\\GradeBook\\Gradebook.csproj"
               }
             }
           }

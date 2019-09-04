@@ -29,39 +29,37 @@ namespace GradeBook
                 // }
                 
                 try
-                {
-                    input = input.ToUpper();
-                    char grade = char.Parse(input);
-                    book.AddGrade(grade);
-                    continue;
+                {  
+                   input = input.ToUpper();
+                   char charTemp;
+                   double doubleTemp;
+                   if(char.TryParse(input, out charTemp) && !double.TryParse(input, out doubleTemp))
+                   {
+                       char grade = charTemp;
+                       book.AddGrade(grade);
+                   }
+                   else if(double.TryParse(input, out doubleTemp))
+                   {
+                       double grade = doubleTemp;
+                       book.AddGrade(grade);
+                   }
+                   else
+                   {
+                        throw new ArgumentException("Invalid Input");
+                   }
+              
                 }
-                catch(ArgumentException)
+                catch(ArgumentException Ex)
                 {
-                    System.Console.WriteLine("argument 1 exception");
+                   Console.WriteLine(Ex.Message);
                 }
-                catch(FormatException)
+                catch(FormatException Ex)
                 {
-                   Console.WriteLine("format 1 exception");
+                   Console.WriteLine(Ex.Message);
                 }
                 finally
                 {
-                    try
-                    {
-                    var grade = double.Parse(input);
-                    book.AddGrade(grade);
-                    }
-                    catch(ArgumentException)
-                    {
-                        Console.WriteLine("argument exception");
-                    }
-                    catch(FormatException)
-                    {
-                        Console.WriteLine("format exception");
-                    }
-                    finally
-                    {
-                        Console.WriteLine("***");
-                    }
+                   Console.WriteLine("***");
                 }
                 
             }while(!done);
