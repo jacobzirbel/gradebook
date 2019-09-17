@@ -3,11 +3,12 @@ using System;
 
 namespace GradeBook
 {
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
     public class Book 
     {
         public Book(string name)
         {
-            category = "";
             grades = new List<double>();
             Name = name;
         }
@@ -39,7 +40,11 @@ namespace GradeBook
         {
             if( grade <= 100 && grade >= 0)
             {
-               grades.Add(grade);
+                grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -47,7 +52,8 @@ namespace GradeBook
             }
         
         }
-    
+
+        public event GradeAddedDelegate GradeAdded;
         public Stats GetStats()
         {
             var result = new Stats();
@@ -91,7 +97,6 @@ namespace GradeBook
             get;
             set;
         }
-        readonly string category = "Science" ;
     }  
     
 } 
